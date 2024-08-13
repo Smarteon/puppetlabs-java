@@ -102,6 +102,7 @@ define java::adoptium (
     'amd64' : { $arch = 'x64' }
     'aarch64' : { $arch = 'aarch64' }
     'arm64' : { $arch = 'aarch64' }
+    'armv7l' : { $arch = 'arm' }
     default : {
       fail ("unsupported platform ${$os_architecture}")
     }
