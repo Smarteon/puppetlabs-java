@@ -96,8 +96,8 @@ define java::adoptium (
     default => $facts['os']['architecture']
   }
 
-  if $facts['platform'] =~ /arm/ {
-  $arch = 'arm'
+  if $facts['rubyplatform'] =~ /arm/ {
+    $arch = 'arm'
   } else {
     case $os_architecture {
       'i386' : { $arch = 'x86-32' }
