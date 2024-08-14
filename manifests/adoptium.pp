@@ -96,15 +96,19 @@ define java::adoptium (
     default => $facts['os']['architecture']
   }
 
-  case $os_architecture {
-    'i386' : { $arch = 'x86-32' }
-    'x86_64' : { $arch = 'x64' }
-    'amd64' : { $arch = 'x64' }
-    'aarch64' : { $arch = 'aarch64' }
-    'arm64' : { $arch = 'aarch64' }
-    'armv7l' : { $arch = 'arm' }
-    default : {
-      fail ("unsupported platform ${$os_architecture}")
+  if $facts['platform'] =~ /arm/ {
+  $arch = 'arm'
+  } else {
+    case $os_architecture {
+      'i386' : { $arch = 'x86-32' }
+      'x86_64' : { $arch = 'x64' }
+      'amd64' : { $arch = 'x64' }
+      'aarch64' : { $arch = 'aarch64' }
+      'arm64' : { $arch = 'aarch64' }
+      'armv7l' : { $arch = 'arm' }
+      default : {
+        fail("unsupported platform ${os_architecture}")
+      }
     }
   }
 
